@@ -1,24 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
-
+import "./App.css";
+import { Card, CardBody, CardHeader } from "reactstrap";
+import { useEffect, useState } from "react";
+import NameForm from "./Components/NameForm";
+import Questions from "./Components/Questions";
 function App() {
+  const [name, setName] = useState(null);
+  const [fetchedQuestion, setFetchedQuestion] = useState();
+
+  useEffect(() => console.log(name), [name]);
+  const nameInputHandler = (iname) => {
+    setName(iname);
+  };
+
+  useEffect(() => {
+    fetch("https://the-trivia-api.com/api/questions?limit=10")
+      .then((response) => response.json())
+      .then((data) => setFetchedQuestion(data));
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div className="title">Quiz App</div>
+
+      <div className="mainContainer">
+        {name === null ? (
+          <NameForm onSubmit={nameInputHandler} />
+        ) : (
+          <Questions fetchedQuestion={fetchedQuestion} />
+        )}
+      </div>
+    </>
   );
 }
 

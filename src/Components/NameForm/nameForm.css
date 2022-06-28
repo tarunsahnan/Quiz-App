@@ -1,0 +1,24 @@
+.inputName {
+  padding: 5px;
+  font-size: 2ch;
+  outline: none;
+  width: 100%;
+  /* border-radius: 1px; */
+}
+.inputNameButton {
+  background-color: transparent;
+  border: 0;
+  min-width: 40%;
+  float: right;
+  background-color: white;
+  color:black;
+  cursor: pointer;
+}
+.selectCategory {
+  display: flex;
+  align-items:center;
+}
+.selectCategoryLabel {
+  font-size: 2ch;
+  color:white;
+}
